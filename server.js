@@ -55,7 +55,7 @@ app.use(passport.initialize());
 app.use(cors());
 app.use(express.json());
 
-app.post("/api/register", (req,res)=>{
+app.post("/api/user/register", (req,res)=>{
     userService.registerUser(req.body).then(msg=>{
         res.json({message: msg});
     }).catch(msg=>{
@@ -63,7 +63,7 @@ app.post("/api/register", (req,res)=>{
     });
 });
 
-app.post("/api/login", (req, res) => {
+app.post("/api/user/login", (req, res) => {
     userService.checkUser(req.body)
         .then((user) => {
             var payload = { 
