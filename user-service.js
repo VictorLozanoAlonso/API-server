@@ -13,7 +13,8 @@ let userSchema = new Schema({
     type: String,
     unique: true
   },
-  password: String
+  password: String,
+  favourites: any = []
 });
 
 let User;
@@ -108,12 +109,12 @@ module.exports.addFavourite = function (id, favId) {
                 User.findByIdAndUpdate(id,
                     { $addToSet: { favourites: favId } },
                     { new: true }
-                ).exec()
+                    ).exec()
                     .then(user => { resolve(user.favourites); })
                     .catch(err => { reject(`Unable to update favourites for user with id: ${id}`); })
-            } else {
-                reject(`Unable to update favourites for user with id: ${id}`);
-            }
+                } else {
+                    reject(`Unable to update favourites for user with id: ${id}`);
+                }
         })
     });
 }
