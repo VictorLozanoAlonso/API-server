@@ -38,8 +38,8 @@ var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
         // passport.authenticate have a req.user._id, req.user.userName values 
         // that matches the request payload data
         next(null, { 
-            _id: jwt_payload._id, 
-            userName: jwt_payload.userName
+            _id: jwt_payload.payload._id, 
+            userName: jwt_payload.payload.userName
         }); 
     } else {
         next(null, false);
